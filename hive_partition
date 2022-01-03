@@ -1,0 +1,84 @@
+
+1. Do the following 4 tasks for the sample data :
+
+a. Create table and load HDFS data
+b. Create table and load local data
+c. Create external table and load HDFS data
+d. Create external table and load local data
+
+Use any sample file that was shared and do the above tasks and observe how the table and the file underneath behave.
+
+2.
+---------
+Partition
+----------
+
+CREATE TABLE postspart (userid STRING, post STRING, time BIGINT)
+PARTITIONED BY (country STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+
+show partitions postspart;
+
+! hadoop fs -ls /user/hive/warehouse/postspart;
+
+
+
+LOAD DATA LOCAL INPATH '/home/dbtrain/<<urname>>/posts_us.txt'
+OVERWRITE INTO TABLE postspart PARTITION (country='US');
+
+
+show partitions postspart;
+! hadoop fs -ls /user/hive/warehouse/postspart;
+! hadoop fs -ls /user/hive/warehouse/postspart/country=US
+
+
+LOAD DATA LOCAL INPATH '/home/dbtrain/<<urname>>/posts_aus.txt'
+OVERWRITE INTO TABLE postspart PARTITION (country='AUS');
+
+
+show partitions postspart;
+! hadoop fs -ls /user/hive/warehouse/postspart;
+
+
+select * from postspart where country='US';
+
+select * from postspart where country='AUSTRALIA';
+
+Dynamic partition
+--------------------
+
+insert into table postspart partition(country) select name,address,country from posts;
+
+set hive.exec.dynamic.partition=true;
+ser hive.exec.dynamic.partition.mode=nonstrict;
+
+
+
+To drop a partiton
+------------------
+ALTER TABLE postspart DROP IF EXISTS PARTITION(country='US') ;
+
+! hadoop fs -ls /user/hive/warehouse/postspart;
+Folder will not be there
+
+F. Create table and load as ORC file
+-------------------------------------
+Optimized Row Columnar (ORC) File format is used as it further compresses data files. It could result in a small performance loss in writing, but there will be huge performance gain in reading.
+
+1.
+DROP TABLE twitorctbl;
+
+CREATE TABLE twitorctbl(tweetId BIGINT, username STRING,txt STRING, CreatedAt STRING, profileLocation STRING COMMENT 'Location of user',favc INT,retweet STRING,retcount INT,followerscount INT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY 't'
+STORED AS ORC tblproperties ("orc.compress"="NONE");
+
+2.
+INSERT INTO TABLE twitorctbl SELECT * FROM twittble;
+
+3.
+SELECT * FROM twitorctbl;
+! hadoop fs -ls /user/hive/warehouse/twitorctbl;
+! hadoop fs -tail /user/hive/warehouse/twitorctbl/000000_0;

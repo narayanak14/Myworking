@@ -1,0 +1,47 @@
+To list the files in VM
+-----------------------
+ls
+
+
+To create a directory
+------------------------
+mkdir <<yourname>>
+
+To change the directory
+------------------------
+
+cd <<<yourname>>
+
+To write to a file:
+--------------------
+
+cat >> a.txt
+
+
+To see the content of a file
+----------------------------
+cat a.txt
+
+
+To come out of a directory
+--------------------------
+cd ..
+
+
+To exit
+-------
+exit
+
+
+You can write file using VI Editor
+----------
+vi editor posts.txt
+
+type somethings by pressing i in the keyboard
+
+Press esc and type as below using :
+
+:w - save the file
+:q - quit
+:wq - save and quit
+:q! - quit without saving

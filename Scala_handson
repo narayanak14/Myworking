@@ -1,33 +1,3 @@
-Skip to content
-Why GitHub? 
-Team
-Enterprise
-Explore 
-Marketplace
-Pricing 
-Search
-Sign in
-Sign up
-gayathrieka
-/
-handson
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Create Scala_handson
- master
-@gayathrieka
-gayathrieka committed on May 26, 2020 
-1 parent b3ca8bd commit b986666a13cf03fee40eb3ddfc715d3ec2d90216
-Showing  with 1,035 additions and 0 deletions.
- 1,035  Scala_handson 
-@@ -0,0 +1,1035 @@
 // Install Scala on Mac : Install Java VM, Install Homebrew,
 // In terminal type: brew install scala
 
@@ -374,17 +344,17 @@ Higher Order Functions
 ---------------------------------------
 Higher order function is a function that either takes a function as argument or returns a function. In other words we can say a function which works with function is called higher order function
 
-object MainObject {  
-   def main(args: Array[String]) = {  
-    fneg(25,multiply)                  // Passing a function as parameter  
-    }  
-    def fneg(a:Int,f:Int=>AnyVal):Unit={  
-       println(f(a))                                   // Calling that function   
-    }  
-    def multiply(a:Int):Int={ 
-        a*2 
-    }  
-}  
+object MainObject {  
+   def main(args: Array[String]) = {  
+    fneg(25,multiply)                  // Passing a function as parameter  
+    }  
+    def fneg(a:Int,f:Int=>AnyVal):Unit={  
+       println(f(a))                                   // Calling that function   
+    }  
+    def multiply(a:Int):Int={ 
+        a*2 
+    }  
+}  
 
 function composition
 ======================  passing function inside a function as parameter
@@ -656,20 +626,20 @@ Lambda functions:
 ---------------------------------------
 // Scala program to show 
 // working of lambda expression 
-
+  
 // Creating object 
 object calculate
 { 
-
+      
 // Main method 
 def main(args:Array[String]) 
 {  
     // lambda expression 
     val ex1 = (x:Int) => x + 2
-
+  
     // with multiple parameters 
     val ex2 = (x:Int, y:Int) => x * y 
-
+      
     println(ex1(7)) 
     println(ex2(2, 3)) 
 } 
@@ -679,13 +649,13 @@ def main(args:Array[String])
 // Creating object 
 object mapping
 { 
-
+      
 // Main method 
 def main(args:Array[String]) 
 { 
     // list of numbers 
     val l = List(1, 1, 2, 3, 5, 8) 
-
+  
     // squaring each element of the list 
     val res = l.map( (x:Int) => x * x ) 
     println(res) 
@@ -780,7 +750,7 @@ A private member is visible only inside the class or object that contains the me
 class Outer {
    class Inner {
       private def f() { println("f") }
-
+      
       class InnerMost {
          f() // OK
       }
@@ -794,11 +764,11 @@ A protected member is only accessible from subclasses of the class in which the 
 class Super {
       protected def f() { println("f") }
    }
-
+   
    class Sub extends Super {
       f()
    }
-
+   
    class Other {
       (new Super).f() // Error: f is not accessible
    }
@@ -810,7 +780,7 @@ Unlike private and protected members, it is not required to specify Public keywo
 class Outer {
    class Inner {
       def f() { println("f") }
-
+      
       class InnerMost {
          f() // OK
       }
@@ -1063,18 +1033,3 @@ object file_handle {
 
 
 } // ---------- End of object ScalaTut ----------
-0 comments on commit b986666
-Please sign in to comment.
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
